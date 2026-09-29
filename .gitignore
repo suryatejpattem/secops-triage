@@ -1,0 +1,19 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Captures and real logs contain your browsing history - never commit
+data/
+logs/
+*.pcap
+*.pcapng
+
+# Secrets (Week 2 reads API keys from the environment)
+.env
