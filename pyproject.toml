@@ -1,7 +1,7 @@
 [project]
 name = "secops-triage"
 version = "0.1.0"
-description = "Add your description here"
+description = "Triage network telemetry: parse Zeek logs, enrich indicators, find beacons."
 readme = "README.md"
 authors = [
     { name = "suryatejpattem", email = "75237459+suryatejpattem@users.noreply.github.com" }
@@ -13,7 +13,7 @@ dependencies = [
 ]
 
 [project.scripts]
-secops-triage = "secops_triage:main"
+triage = "secops_triage.cli:main"
 
 [build-system]
 requires = ["uv_build>=0.12.19,<0.13.0"]
@@ -25,3 +25,9 @@ dev = [
     "pytest>=9.1.1",
     "ruff>=0.16.9",
 ]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "RUF", "S"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101"]  # assert is how pytest works

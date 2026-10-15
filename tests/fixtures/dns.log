@@ -1,0 +1,4 @@
+{"ts": 1758400000.0, "uid": "C1a", "query": "example.com", "qtype_name": "A"}
+{"ts": 1758400001.0, "uid": "C2b", "query": "EXAMPLE.COM.", "qtype_name": "A"}
+{"ts": 1758400002.0, "uid": "C3c", "qtype_name": "A"}
+{"ts": 1758400003.0, "uid": "C4d", "query": 42, "qtype_name": "A"}
