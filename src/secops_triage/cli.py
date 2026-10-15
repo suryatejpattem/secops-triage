@@ -34,7 +34,13 @@ def main() -> None:
 @click.argument("log_dir", type=LOG_DIR)
 @click.option("--json", "as_json", is_flag=True, help="Emit JSON instead of a table.")
 @click.option("--top", default=20, show_default=True, help="How many results to show.")
-def parse(log_dir: Path, as_json: bool, top: int) -> None:
+@click.option(
+    "--type",
+    "type_filter",
+    type=click.Choice(["ipv4", "ipv6", "domain"]),
+    help="Only show indicators of this type.",
+)
+def parse(log_dir: Path, as_json: bool, top: int, type_filter: str | None) -> None:
     """Extract indicators from a directory of Zeek JSON logs."""
     counts: Counter[tuple[str, str, str]] = Counter()
     stats = zeek.ReadStats()
@@ -42,6 +48,8 @@ def parse(log_dir: Path, as_json: bool, top: int) -> None:
         path = log_dir / filename
         if path.exists():
             for ind in parser(path, stats):
+                if type_filter and ind.type != type_filter:
+                    continue
                 counts[(ind.value, ind.type.value, ind.source)] += 1
 
     if stats.skipped:

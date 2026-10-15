@@ -47,3 +47,18 @@ def test_table_prints_log_values_literally_not_as_markup(tmp_path):
     result = CliRunner().invoke(main, ["parse", str(tmp_path)])
     assert result.exit_code == 0, result.output
     assert "[bold]untrusted.example" in result.stdout
+
+
+def test_parse_type_filter_keeps_only_that_type(tmp_path):
+    result = CliRunner().invoke(
+        main, ["parse", str(copy_fixtures(tmp_path)), "--json", "--type", "domain"]
+    )
+    assert result.exit_code == 0, result.output
+    rows = json.loads(result.stdout)
+    assert rows
+    assert all(r["type"] == "domain" for r in rows)
+
+
+def test_parse_type_filter_rejects_unknown_types(tmp_path):
+    result = CliRunner().invoke(main, ["parse", str(tmp_path), "--type", "url"])
+    assert result.exit_code == 2
