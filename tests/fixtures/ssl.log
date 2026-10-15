@@ -1,0 +1,3 @@
+{"ts": 1758400000.2, "uid": "C1a", "server_name": "Example.ORG.", "version": "TLSv13"}
+{"ts": 1758400060.3, "uid": "C2b", "server_name": null, "version": "TLSv13"}
+{"ts": 1758400240.6, "uid": "C5e", "server_name": "api.example.net", "version": "TLSv13"}
